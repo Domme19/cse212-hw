@@ -32,6 +32,10 @@ public static class Search {
     /// </summary>
     /// <param name="data">The array of numbers</param>
     /// <param name="target">The number we're looking for</param>
+    /// 
+    
+    // this is order of n as we iterating over all the elements in the list to find the target,
+    // in the worst case scenario
     private static int SearchSorted1(int[] data, int target) {
         var count = 0;
         foreach (var item in data) {

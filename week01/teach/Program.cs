@@ -14,5 +14,5 @@
 // Console.WriteLine("\n======================\nDivisors Solution\n======================");
 // DivisorsSolution.Run();
 //
-Console.WriteLine("\n======================\nArray Selector Solution\n======================");
-ArraySelectorSolution.Run();
+// Console.WriteLine("\n======================\nArray Selector Solution\n======================");
+// ArraySelectorSolution.Run();
