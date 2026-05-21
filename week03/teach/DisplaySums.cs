@@ -41,15 +41,10 @@ public static class DisplaySums {
         for (int i = 0; i < numbers.Length; i++)
         {
             int number1 = numbers[i]; 
-            for (int j = 0; j < numbers.Length; j++)
+            for (int j = i + 1; j < numbers.Length - 1; j++)
             {
                 int number2 = numbers[j];
                 int sum = number1 + number2;
-                if (number1 == number2)
-                {
-                    continue; 
-                }
-                
                 if (sum == 10)
                 {
                     Console.WriteLine($"Num1: {number1}, Num2: {number2}, sum:{sum}"); 
