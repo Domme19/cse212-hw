@@ -1,4 +1,7 @@
-﻿public static class DisplaySums {
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.InteropServices;
+
+public static class DisplaySums {
     public static void Run() {
         DisplaySumPairs([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
         // Should show something like (order does not matter):
@@ -29,5 +32,30 @@
     /// <param name="numbers">array of integers</param>
     private static void DisplaySumPairs(int[] numbers) {
         // TODO Problem 2 - This should print pairs of numbers in the given array
+        
+        // iterate over the list of numbers
+        // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
+        // 
+
+        // running at order of n2 O(n^2)
+        for (int i = 0; i < numbers.Length; i++)
+        {
+            int number1 = numbers[i]; 
+            for (int j = 0; j < numbers.Length; j++)
+            {
+                int number2 = numbers[j];
+                int sum = number1 + number2;
+                if (number1 == number2)
+                {
+                    continue; 
+                }
+                
+                if (sum == 10)
+                {
+                    Console.WriteLine($"Num1: {number1}, Num2: {number2}, sum:{sum}"); 
+                }
+            }
+        
+        }
     }
 }
