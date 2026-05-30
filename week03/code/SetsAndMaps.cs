@@ -1,3 +1,4 @@
+using System.Runtime.ExceptionServices;
 using System.Text.Json;
 
 public static class SetsAndMaps
@@ -99,7 +100,46 @@ public static class SetsAndMaps
     public static bool IsAnagram(string word1, string word2)
     {
         // TODO Problem 3 - ADD YOUR CODE HERE
-        return false;
+        // check for the length of all the strings
+        string cleanString1 = word1.ToLower().Replace(" ", "");
+        string cleanString2 = word2.ToLower().Replace(" ", "");
+
+        if (cleanString1.Length != cleanString2.Length)
+        {
+            return false;
+        }
+
+        // count the frequency of the letters
+        // dictionary to keep track count of the letters
+        Dictionary<char, int> letterCounts = new Dictionary<char, int>();
+        
+
+        for (int i = 0; i < cleanString1.Length; i++)
+        {
+            char c = cleanString1[i];
+            if (letterCounts.ContainsKey(c))
+            {
+                letterCounts[c] += 1; 
+            }else
+            {
+                letterCounts[c] = 1; 
+            }
+        }
+
+        // compare and decrement frequencies using the second word
+        for (int i = 0; i < cleanString2.Length; i++)
+        {
+            char c = cleanString2[i];
+
+            if (!letterCounts.ContainsKey(c) || letterCounts[c] == 0)
+            {
+                return false;
+            }
+
+            letterCounts[c]--;
+        }
+
+        return true;
     }
 
     /// <summary>
