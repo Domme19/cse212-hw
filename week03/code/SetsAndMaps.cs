@@ -61,11 +61,20 @@ public static class SetsAndMaps
     /// <returns>fixed array of divisors</returns>
     public static Dictionary<string, int> SummarizeDegrees(string filename)
     {
+        // dictionary of degrees
         var degrees = new Dictionary<string, int>();
         foreach (var line in File.ReadLines(filename))
         {
             var fields = line.Split(",");
-            // TODO Problem 2 - ADD YOUR CODE HERE
+            string keyDegree = fields[3]; 
+            // if the dictionary contains the key
+            if (degrees.ContainsKey(keyDegree))
+            {
+                degrees[keyDegree] += 1; 
+            }else
+            {
+                degrees[keyDegree] = 1; 
+            }
         }
 
         return degrees;
