@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Globalization;
+using Microsoft.VisualStudio.TestPlatform.Common.Telemetry;
 
 public class LinkedList : IEnumerable<int>
 {
@@ -82,6 +83,24 @@ public class LinkedList : IEnumerable<int>
     public void RemoveTail()
     {
         // TODO Problem 2
+
+        // if the list has only one item in it
+        // then set head and tail to null
+        // this will cover the empty list as well
+
+        if (_head == _tail)
+        {
+            _head = null;
+            _tail = null;
+        }
+
+        // if list has more than one item in it, then only the tail
+        // will be affected
+        else if(_tail is not null && _tail.Prev is not null)
+        {
+            _tail.Prev!.Next = null;
+            _tail = _tail.Prev;
+        }
     }
 
     /// <summary>
@@ -126,6 +145,39 @@ public class LinkedList : IEnumerable<int>
     public void Remove(int value)
     {
         // TODO Problem 3
+        // searching from the head
+        Node? curr = _head;
+
+        while (curr is not null)
+        {
+            if (curr.Data == value)
+            {
+                //  check if it's in the head node
+                if (curr == _head)
+                {
+                    RemoveHead(); 
+                }
+
+                // if it's in the tail node
+                else if (curr == _tail)
+                {
+                    RemoveTail();
+                }
+
+                // if it's in the middle of the node
+                else
+                {
+                    // connect the previous node to the next node
+                    curr.Prev!.Next = curr.Next;
+                    curr.Next!.Prev = curr.Prev;
+
+                }
+
+                return;
+            }
+
+            curr = curr.Next;
+        }
     }
 
     /// <summary>
