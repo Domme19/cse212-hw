@@ -63,7 +63,7 @@ public static class Recursion
             if (!word.Contains(currLetter))
             {
                 // Build the next step by appending the letter, moving deeper down the tree
-                PermutationsChoose(results, letters, size, word + currLetter); 
+                PermutationsChoose(results, letters, size, word + currLetter);
             }
         }
     }
@@ -112,6 +112,16 @@ public static class Recursion
     /// </summary>
     public static decimal CountWaysToClimb(int s, Dictionary<int, decimal>? remember = null)
     {
+
+        // 1. Initialize the dictionary if it's the top-level call (null)
+        remember ??= new Dictionary<int, decimal>();
+
+        // lookup next (Intercepts everything, even base cases once cached)
+        if (remember.ContainsKey(s))
+        {
+            return remember[s]; 
+        }
+
         // Base Cases
         if (s == 0)
             return 0;
@@ -124,8 +134,12 @@ public static class Recursion
 
         // TODO Start Problem 3
 
-        // Solve using recursion
-        decimal ways = CountWaysToClimb(s - 1) + CountWaysToClimb(s - 2) + CountWaysToClimb(s - 3);
+        // Solve using recursion (passing remember to keep the shared cache alive)
+        decimal ways = CountWaysToClimb(s - 1, remember) + CountWaysToClimb(s - 2, remember) + CountWaysToClimb(s - 3, remember);
+
+        // Cache Save: Store the result for this 's' before returning
+        remember[s] = ways;
+        
         return ways;
     }
 
@@ -155,10 +169,11 @@ public static class Recursion
     {
         // If this is the first time running the function, then we need
         // to initialize the currPath list.
-        if (currPath == null) {
+        if (currPath == null)
+        {
             currPath = new List<ValueTuple<int, int>>();
         }
-        
+
         // currPath.Add((1,2)); // Use this syntax to add to the current path
 
         // TODO Start Problem 5
