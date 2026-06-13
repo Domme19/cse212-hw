@@ -15,7 +15,13 @@ public static class Recursion
     public static int SumSquaresRecursive(int n)
     {
         // TODO Start Problem 1
-        return 0;
+        //  base case: to stop the recursion when n is 0 or negative
+        if (n <= 0)
+        {
+            return 0;
+        }
+        // recursive step: current square + sum of previous squares
+        return (n * n) + SumSquaresRecursive(n - 1);
     }
 
     /// <summary>
