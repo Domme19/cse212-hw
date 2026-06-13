@@ -119,7 +119,7 @@ public static class Recursion
         // lookup next (Intercepts everything, even base cases once cached)
         if (remember.ContainsKey(s))
         {
-            return remember[s]; 
+            return remember[s];
         }
 
         // Base Cases
@@ -139,7 +139,7 @@ public static class Recursion
 
         // Cache Save: Store the result for this 's' before returning
         remember[s] = ways;
-        
+
         return ways;
     }
 
@@ -159,6 +159,28 @@ public static class Recursion
     public static void WildcardBinary(string pattern, List<string> results)
     {
         // TODO Start Problem 4
+        // 1. Find the first wildcard index
+        int wildcardIndex = pattern.IndexOf('*');
+
+
+        // Base Case: If there is no '*', the pattern is a completed binary string
+        if (wildcardIndex == -1)
+        {
+            results.Add(pattern);
+            return;
+        }
+
+
+        // 2. Recursive Step: Split the string components
+        string leftSide = pattern[..wildcardIndex];
+        string rightSide = pattern[(wildcardIndex + 1)..];
+
+        // Branch 1: Replace wildcard with '0' and recurse
+        WildcardBinary(leftSide + "0" + rightSide, results);
+
+        // Branch 2: Replace wildcard with '1' and recurse
+        WildcardBinary(leftSide + "1" + rightSide, results);
+
     }
 
     /// <summary>
