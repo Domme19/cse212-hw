@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Transactions;
 
 public static class Recursion
 {
@@ -46,6 +47,25 @@ public static class Recursion
     public static void PermutationsChoose(List<string> results, string letters, int size, string word = "")
     {
         // TODO Start Problem 2
+        // Base Case: The word has reached the targeted size
+        if (word.Length == size)
+        {
+            results.Add(word);
+            return;
+        }
+
+        // Try adding each letter to the current word
+        for (int i = 0; i < letters.Length; i++)
+        {
+            char currLetter = letters[i];
+
+            // to ensure that we don't reuse the same character
+            if (!word.Contains(currLetter))
+            {
+                // Build the next step by appending the letter, moving deeper down the tree
+                PermutationsChoose(results, letters, size, word + currLetter); 
+            }
+        }
     }
 
     /// <summary>
