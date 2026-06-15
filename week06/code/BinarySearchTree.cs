@@ -9,9 +9,30 @@ public class BinarySearchTree : IEnumerable<int>
     /// </summary>
     public void Insert(int value)
     {
+
+        // Check if the value exists in the tree to prevent duplicates
+        // 
+        Node? current = _root;
+        while (current != null)
+        {
+            if (value == current.Data)
+            {
+                return; // Duplicate found, Exit the function immediately
+            }
+            
+            else if (value < current.Data)
+            {
+                current = current.Left;
+            }
+            else
+            {
+                current = current.Right;
+            }
+        }
         // Create new node
         Node newNode = new(value);
         // If the list is empty, then point both head and tail to the new node.
+
         if (_root is null)
         {
             _root = newNode;
