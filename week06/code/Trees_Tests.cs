@@ -39,7 +39,7 @@ public class TreeContainsTests
         tree.Insert(10);
         tree.Insert(1);
         tree.Insert(6);
-
+        
         Assert.IsTrue(tree.Contains(3));
         Assert.IsFalse(tree.Contains(2));
         Assert.IsTrue(tree.Contains(6));
